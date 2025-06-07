@@ -1,0 +1,28 @@
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/bin/Debug/net8.0/GestionDeFarmacia
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/bin/Debug/net8.0/GestionDeFarmacia.deps.json
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/bin/Debug/net8.0/GestionDeFarmacia.runtimeconfig.json
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/bin/Debug/net8.0/GestionDeFarmacia.dll
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/bin/Debug/net8.0/GestionDeFarmacia.pdb
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.GeneratedMSBuildEditorConfig.editorconfig
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.AssemblyInfoInputs.cache
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.AssemblyInfo.cs
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.csproj.CoreCompileInputs.cache
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.dll
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/obj/Debug/net8.0/refint/GestionDeFarmacia.dll
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.pdb
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.genruntimeconfig.cache
+/home/kedwin/Documentos/cursos/POO/GestionDeFarmacia/obj/Debug/net8.0/ref/GestionDeFarmacia.dll
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/bin/Debug/net8.0/GestionDeFarmacia
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/bin/Debug/net8.0/GestionDeFarmacia.deps.json
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/bin/Debug/net8.0/GestionDeFarmacia.runtimeconfig.json
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/bin/Debug/net8.0/GestionDeFarmacia.dll
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/bin/Debug/net8.0/GestionDeFarmacia.pdb
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.GeneratedMSBuildEditorConfig.editorconfig
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.AssemblyInfoInputs.cache
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.AssemblyInfo.cs
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.csproj.CoreCompileInputs.cache
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.dll
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/obj/Debug/net8.0/refint/GestionDeFarmacia.dll
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.pdb
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/obj/Debug/net8.0/GestionDeFarmacia.genruntimeconfig.cache
+/home/kedwin/Documentos/cursos/POO/Proyecto Final/GestionDeFarmacia/obj/Debug/net8.0/ref/GestionDeFarmacia.dll
