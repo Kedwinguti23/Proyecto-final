@@ -21,15 +21,22 @@ namespace GestionDeFarmacia.Core
             pedidos = new List<Pedido>();
         }
 
-        // CRUD DE MEDICAMENTOS
+        // ------------------ MEDICAMENTOS ------------------
+
         public void CrearMedicamento()
         {
             Console.WriteLine("=== Registrar Medicamento ===");
             Console.Write("Nombre: ");
-            string nombre = Console.ReadLine();
+            string? nombre = Console.ReadLine();
 
             Console.Write("Descripción: ");
-            string descripcion = Console.ReadLine();
+            string? descripcion = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(descripcion))
+            {
+                Console.WriteLine(" Error: Nombre y descripción no pueden estar vacíos.");
+                return;
+            }
 
             int stock = Utils.LeerEntero("Stock: ");
             decimal precio = Utils.LeerDecimal("Precio: ");
@@ -67,21 +74,26 @@ namespace GestionDeFarmacia.Core
             if (med == null)
             {
                 Console.WriteLine(" Medicamento no encontrado.");
+                return;
             }
-            else
+
+            Console.Write("Nuevo nombre: ");
+            string? nombre = Console.ReadLine();
+
+            Console.Write("Nueva descripción: ");
+            string? descripcion = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(descripcion))
             {
-                Console.Write("Nuevo nombre: ");
-                string nombre = Console.ReadLine();
-
-                Console.Write("Nueva descripción: ");
-                string descripcion = Console.ReadLine();
-
-                int stock = Utils.LeerEntero("Nuevo stock: ");
-                decimal precio = Utils.LeerDecimal("Nuevo precio: ");
-
-                med.Actualizar(nombre, descripcion, stock, precio);
-                Console.WriteLine(" Medicamento actualizado correctamente.");
+                Console.WriteLine(" Error: Nombre y descripción no pueden estar vacíos.");
+                return;
             }
+
+            int stock = Utils.LeerEntero("Nuevo stock: ");
+            decimal precio = Utils.LeerDecimal("Nuevo precio: ");
+
+            med.Actualizar(nombre, descripcion, stock, precio);
+            Console.WriteLine(" Medicamento actualizado correctamente.");
             Utils.Pausar();
         }
 
@@ -101,96 +113,147 @@ namespace GestionDeFarmacia.Core
                 Console.WriteLine(" Medicamento no encontrado.");
             }
             Utils.Pausar();
+
+
+
         }
 
-        // CRUD DE RECETAS MÉDICAS
-        public void CrearReceta()
+        // ------------------ RECETAS ------------------
+
+public void CrearReceta()
+{
+    Console.WriteLine("=== Crear Receta Médica ===");
+    Console.Write("Nombre del paciente: ");
+    string? nombrePaciente = Console.ReadLine();
+
+    if (string.IsNullOrWhiteSpace(nombrePaciente))
+    {
+        Console.WriteLine(" Nombre del paciente no válido.");
+        return;
+    }
+
+    var receta = new RecetaMedica(contadorRecetas++, nombrePaciente);
+
+    string agregarOtro;
+    do
+    {
+        ListarMedicamentos();
+
+        int idMed = Utils.LeerEntero("Ingrese el ID del medicamento: ");
+        var med = medicamentos.Find(m => m.Id == idMed);
+
+        if (med == null)
         {
-            Console.WriteLine("=== Crear Receta Médica ===");
-            Console.Write("Nombre del paciente: ");
-            string nombrePaciente = Console.ReadLine();
-
-            var receta = new RecetaMedica(contadorRecetas++, nombrePaciente);
-
-            int cantidad = Utils.LeerEntero("¿Cuántos medicamentos desea agregar?: ");
-
-            for (int i = 0; i < cantidad; i++)
-            {
-                int idMed = Utils.LeerEntero($"ID del medicamento #{i + 1}: ");
-                var med = medicamentos.Find(m => m.Id == idMed);
-                if (med != null)
-                {
-                    receta.AgregarMedicamento(med);
-                }
-                else
-                {
-                    Console.WriteLine($" Medicamento con ID {idMed} no encontrado.");
-                }
-            }
-
-            recetas.Add(receta);
-            Console.WriteLine(" Receta creada con éxito.");
-            Utils.Pausar();
+            Console.WriteLine(" Medicamento no encontrado.");
+        }
+        else
+        {
+            int cantidad = Utils.LeerEntero("Cantidad: ");
+            receta.AgregarMedicamento(med, cantidad);
         }
 
-        public void ListarRecetas()
+        Console.Write("¿Agregar otro medicamento? (s/n): ");
+        agregarOtro = Console.ReadLine()?.ToLower();
+    } while (agregarOtro == "s");
+
+    recetas.Add(receta);
+    Console.WriteLine(" Receta creada con éxito.");
+    Utils.Pausar();
+}
+
+public void ListarRecetas()
+{
+    Console.WriteLine("=== Lista de Recetas ===");
+    if (recetas.Count == 0)
+    {
+        Console.WriteLine("No hay recetas registradas.");
+    }
+    else
+    {
+        foreach (var receta in recetas)
         {
-            Console.WriteLine("=== Lista de Recetas ===");
-            if (recetas.Count == 0)
+            Console.WriteLine(receta);
+            Console.WriteLine("-------------------------");
+        }
+    }
+    Utils.Pausar();
+}
+
+public void ActualizarReceta()
+{
+    Console.WriteLine("=== Actualizar Receta ===");
+    int id = Utils.LeerEntero("Ingrese el ID de la receta: ");
+    var receta = recetas.Find(r => r.Id == id);
+
+    if (receta == null)
+    {
+        Console.WriteLine(" Receta no encontrada.");
+        Utils.Pausar();
+        return;
+    }
+
+    Console.WriteLine("1. Agregar medicamento");
+    Console.WriteLine("2. Eliminar medicamento");
+    Console.Write("Opción: ");
+    string? opcion = Console.ReadLine();
+
+    switch (opcion)
+    {
+        case "1":
+            ListarMedicamentos();
+            int idMed = Utils.LeerEntero("ID del medicamento: ");
+            var med = medicamentos.Find(m => m.Id == idMed);
+
+            if (med == null)
             {
-                Console.WriteLine("No hay recetas registradas.");
+                Console.WriteLine(" Medicamento no encontrado.");
             }
             else
             {
-                foreach (var receta in recetas)
-                {
-                    Console.WriteLine(receta);
-                    Console.WriteLine("-------------------------");
-                }
+                int cantidad = Utils.LeerEntero("Cantidad: ");
+                receta.AgregarMedicamento(med, cantidad);
+                Console.WriteLine(" Medicamento agregado.");
             }
-            Utils.Pausar();
-        }
+            break;
 
-        public void ActualizarReceta()
-        {
-            Console.WriteLine("=== Actualizar Receta ===");
-            int id = Utils.LeerEntero("Ingrese el ID de la receta: ");
-
-            var receta = recetas.Find(r => r.Id == id);
-            if (receta == null)
-            {
-                Console.WriteLine(" Receta no encontrada.");
-            }
+        case "2":
+            int idEliminar = Utils.LeerEntero("ID del medicamento a eliminar: ");
+            if (receta.EliminarMedicamento(idEliminar))
+                Console.WriteLine(" Medicamento eliminado de la receta.");
             else
-            {
-                Console.Write("Nuevo nombre del paciente: ");
-                string nuevoNombre = Console.ReadLine();
-                receta.NombrePaciente = nuevoNombre;
-                Console.WriteLine(" Receta actualizada.");
-            }
-            Utils.Pausar();
-        }
+                Console.WriteLine(" Medicamento no estaba en la receta.");
+            break;
 
-        public void EliminarReceta()
-        {
-            Console.WriteLine("=== Eliminar Receta ===");
-            int id = Utils.LeerEntero("Ingrese el ID de la receta: ");
+        default:
+            Console.WriteLine(" Opción inválida.");
+            break;
+    }
 
-            var receta = recetas.Find(r => r.Id == id);
-            if (receta != null)
-            {
-                recetas.Remove(receta);
-                Console.WriteLine(" Receta eliminada.");
-            }
-            else
-            {
-                Console.WriteLine(" Receta no encontrada.");
-            }
+    Utils.Pausar();
+}
 
-            Utils.Pausar();
-        }
+public void EliminarReceta()
+{
+    Console.WriteLine("=== Eliminar Receta ===");
+    int id = Utils.LeerEntero("Ingrese el ID de la receta: ");
+    var receta = recetas.Find(r => r.Id == id);
 
-        // CRUD DE PEDIDOS
+    if (receta != null)
+    {
+        recetas.Remove(receta);
+        Console.WriteLine(" Receta eliminada.");
+    }
+    else
+    {
+        Console.WriteLine(" Receta no encontrada.");
+    }
+
+    Utils.Pausar();
+}
+
+
+        // ------------------ PEDIDOS ------------------
+
         public void CrearPedido()
         {
             Console.WriteLine("=== Crear Pedido ===");
