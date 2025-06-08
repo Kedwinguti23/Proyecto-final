@@ -1,37 +1,46 @@
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace GestionDeFarmacia.Models
 {
     public class RecetaMedica
     {
-        // Identificador único de la receta
         public int Id { get; set; }
 
-        // Nombre del paciente asociado a la receta
+        // Validación para que nunca sea nulo
         public string NombrePaciente { get; set; }
 
-        // Lista de medicamentos recetados
-        public List<Medicamento> Medicamentos { get; set; }
+        // Diccionario que asocia cada medicamento con su cantidad
+        public Dictionary<Medicamento, int> Medicamentos { get; }
 
-        // Constructor
         public RecetaMedica(int id, string nombrePaciente)
         {
             Id = id;
-            NombrePaciente = nombrePaciente;
-            Medicamentos = new List<Medicamento>();
+            NombrePaciente = nombrePaciente ?? throw new ArgumentNullException(nameof(nombrePaciente));
+            Medicamentos = new Dictionary<Medicamento, int>();
         }
 
-        // Agrega un medicamento a la receta
-        public void AgregarMedicamento(Medicamento medicamento)
+        // Agrega un medicamento con su cantidad correspondiente
+        public void AgregarMedicamento(Medicamento medicamento, int cantidad)
         {
-            Medicamentos.Add(medicamento);
+            if (medicamento == null) throw new ArgumentNullException(nameof(medicamento));
+            if (cantidad <= 0) throw new ArgumentException("La cantidad debe ser mayor a cero.", nameof(cantidad));
+
+            if (Medicamentos.ContainsKey(medicamento))
+            {
+                Medicamentos[medicamento] += cantidad;
+            }
+            else
+            {
+                Medicamentos.Add(medicamento, cantidad);
+            }
         }
 
-        // Elimina un medicamento por ID
+        // Elimina un medicamento por su ID
         public bool EliminarMedicamento(int idMedicamento)
         {
-            var med = Medicamentos.Find(m => m.Id == idMedicamento);
+            var med = Medicamentos.Keys.FirstOrDefault(m => m.Id == idMedicamento);
             if (med != null)
             {
                 Medicamentos.Remove(med);
@@ -40,17 +49,20 @@ namespace GestionDeFarmacia.Models
             return false;
         }
 
-        // Devuelve una representación legible de la receta
+        // Muestra la información completa de la receta médica
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Receta ID: {Id} | Paciente: {NombrePaciente}");
-            sb.AppendLine("Medicamentos:");
-            foreach (var med in Medicamentos)
+            if (Medicamentos.Count == 0)
             {
-                sb.AppendLine($"- {med.Nombre} (ID: {med.Id})");
+                return $"ID Receta: {Id}\nPaciente: {NombrePaciente}\nMedicamentos: Sin medicamentos asignados.";
             }
-            return sb.ToString();
+
+            string detalleMedicamentos = string.Join("\n", Medicamentos.Select(kvp =>
+                $"- {kvp.Key.Nombre} ({kvp.Key.Descripcion}) × {kvp.Value}"));
+
+            return $"ID Receta: {Id}\n" +
+                   $"Paciente: {NombrePaciente}\n" +
+                   $"Medicamentos:\n{detalleMedicamentos}";
         }
     }
 }
