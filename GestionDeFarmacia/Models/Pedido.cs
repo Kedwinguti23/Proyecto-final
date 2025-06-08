@@ -11,7 +11,7 @@ namespace GestionDeFarmacia.Models
         public RecetaMedica Receta { get; set; }
 
         // Fecha en que se procesó el pedido
-        public DateTime FechaPedido { get; set; }
+        public DateTime FechaPedido { get; private set; }
 
         // Indica si el pedido ya fue procesado
         public bool Procesado { get; private set; }
@@ -20,22 +20,23 @@ namespace GestionDeFarmacia.Models
         public Pedido(int id, RecetaMedica receta)
         {
             Id = id;
-            Receta = receta;
+            Receta = receta ?? throw new ArgumentNullException(nameof(receta));
             FechaPedido = DateTime.Now;
             Procesado = false;
         }
 
-        // Marca el pedido como procesado (lógica puede expandirse en SistemaFarmacia)
+        // Marca el pedido como procesado
         public void Procesar()
         {
             Procesado = true;
-            // Aquí podrías reducir el stock de los medicamentos si lo hacés desde SistemaFarmacia
+            // Podrías descontar el stock de medicamentos aquí si no lo haces en SistemaFarmacia
         }
 
         // Devuelve la información del pedido para impresión
         public override string ToString()
         {
-            return $"Pedido ID: {Id} | Fecha: {FechaPedido} | Procesado: {(Procesado ? "Sí" : "No")}\n{Receta}";
+            return $"Pedido ID: {Id} | Fecha: {FechaPedido:G} | Procesado: {(Procesado ? "Sí" : "No")}\n{Receta}";
         }
     }
 }
+
