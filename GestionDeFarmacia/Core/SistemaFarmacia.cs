@@ -24,7 +24,7 @@ namespace GestionDeFarmacia.Core
         // CRUD DE MEDICAMENTOS
         public void CrearMedicamento()
         {
-            Console.WriteLine("=== Crear Medicamento ===");
+            Console.WriteLine("=== Registrar Medicamento ===");
             Console.Write("Nombre: ");
             string nombre = Console.ReadLine();
 
