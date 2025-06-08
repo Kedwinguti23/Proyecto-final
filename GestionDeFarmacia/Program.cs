@@ -40,7 +40,7 @@ namespace GestionDeFarmacia
         {
             Utils.LimpiarPantalla();
             Console.WriteLine("=== GESTOR DE MEDICAMENTOS ===");
-            Console.WriteLine("1. Crear");
+            Console.WriteLine("1. Registrar");
             Console.WriteLine("2. Listar");
             Console.WriteLine("3. Actualizar");
             Console.WriteLine("4. Eliminar");
