@@ -13,9 +13,9 @@ namespace GestionDeFarmacia
             {
                 Utils.LimpiarPantalla();
                 Console.WriteLine("=== GESTIÓN DE FARMACIA ===");
-                Console.WriteLine("1. CRUD Medicamentos");
-                Console.WriteLine("2. CRUD Recetas Médicas");
-                Console.WriteLine("3. CRUD Pedidos");
+                Console.WriteLine("1. Gestor de Medicamentos");
+                Console.WriteLine("2. Gestor de Recetas Médicas");
+                Console.WriteLine("3. Gestor de Pedidos");
                 Console.WriteLine("0. Salir");
                 Console.Write("Seleccione una opción: ");
                 string opcion = Console.ReadLine();
@@ -39,7 +39,7 @@ namespace GestionDeFarmacia
         static void SubMenuMedicamentos(SistemaFarmacia sistema)
         {
             Utils.LimpiarPantalla();
-            Console.WriteLine("=== CRUD MEDICAMENTOS ===");
+            Console.WriteLine("=== GESTOR DE MEDICAMENTOS ===");
             Console.WriteLine("1. Crear");
             Console.WriteLine("2. Listar");
             Console.WriteLine("3. Actualizar");
@@ -60,7 +60,7 @@ namespace GestionDeFarmacia
         static void SubMenuRecetas(SistemaFarmacia sistema)
         {
             Utils.LimpiarPantalla();
-            Console.WriteLine("=== CRUD RECETAS MÉDICAS ===");
+            Console.WriteLine("=== GESTOR RECETAS MÉDICAS ===");
             Console.WriteLine("1. Crear");
             Console.WriteLine("2. Listar");
             Console.WriteLine("3. Actualizar");
@@ -81,7 +81,7 @@ namespace GestionDeFarmacia
         static void SubMenuPedidos(SistemaFarmacia sistema)
         {
             Utils.LimpiarPantalla();
-            Console.WriteLine("=== CRUD PEDIDOS ===");
+            Console.WriteLine("=== GESTOR PEDIDOS ===");
             Console.WriteLine("1. Crear");
             Console.WriteLine("2. Listar");
             Console.WriteLine("3. Procesar");
