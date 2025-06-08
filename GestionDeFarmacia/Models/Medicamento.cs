@@ -21,8 +21,8 @@ namespace GestionDeFarmacia.Models
         public Medicamento(int id, string nombre, string descripcion, int stock, decimal precio)
         {
             Id = id;
-            Nombre = nombre;
-            Descripcion = descripcion;
+            Nombre = nombre ?? throw new ArgumentNullException(nameof(nombre));
+            Descripcion = descripcion ?? throw new ArgumentNullException(nameof(descripcion));
             Stock = stock;
             Precio = precio;
         }
@@ -30,8 +30,8 @@ namespace GestionDeFarmacia.Models
         // Método para modificar los datos del medicamento
         public void Actualizar(string nombre, string descripcion, int stock, decimal precio)
         {
-            Nombre = nombre;
-            Descripcion = descripcion;
+            Nombre = nombre ?? throw new ArgumentNullException(nameof(nombre));
+            Descripcion = descripcion ?? throw new ArgumentNullException(nameof(descripcion));
             Stock = stock;
             Precio = precio;
         }
@@ -39,7 +39,7 @@ namespace GestionDeFarmacia.Models
         // Devuelve una cadena legible con la información del medicamento
         public override string ToString()
         {
-            return $"[ID: {Id}] {Nombre} - {Descripcion} | Stock: {Stock} | Precio: ${Precio}";
+            return $"[ID: {Id}] {Nombre} - {Descripcion} | Stock: {Stock} | Precio: ${Precio:F2}";
         }
     }
 }
