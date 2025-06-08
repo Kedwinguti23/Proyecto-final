@@ -16,7 +16,6 @@ Interfaz basada en consola (CLI)
 ProyectoFinal/
 ├── GestionDeFarmacia/ # Proyecto principal (consola)
 │ ├── Core/ # Lógica del sistema
-│ ├── Models/ # Clases de dominio
 │ ├── Interfaces/ # Interfaces generales
 │ ├── Program.cs # Punto de entrada
 │ └── GestionDeFarmacia.csproj
